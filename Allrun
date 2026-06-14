@@ -123,7 +123,10 @@ decomposePar -force > log.decompose 2>&1
 #   is read from system/controlDict.
 NCORES=$(foamDictionary -entry numberOfSubdomains -value system/decomposeParDict)
 echo "--- foamRun / multicomponentFluid (${NCORES} cores) ---"
-mpirun -np $NCORES foamRun -parallel > log.foamRun 2>&1
+# tee: stream live solver progress to the terminal AND save to log.foamRun.
+# pipefail makes a foamRun failure abort the script (otherwise exit = tee's 0).
+set -o pipefail
+mpirun -np $NCORES foamRun -parallel 2>&1 | tee log.foamRun
 
 # Step 5: Reconstruct
 echo "--- reconstructPar ---"
