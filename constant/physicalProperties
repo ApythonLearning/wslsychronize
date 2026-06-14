@@ -1,0 +1,18 @@
+FoamFile { version 2.0; format ascii; class dictionary; location "constant"; object physicalProperties; }
+
+thermoType
+{
+    type            hePsiThermo;
+    mixture         multicomponentMixture;   // OF12 spelling (OF10 was multiComponentMixture)
+    transport       sutherland;
+    thermo          janaf;
+    energy          sensibleEnthalpy;
+    equationOfState perfectGas;
+    specie          specie;
+}
+
+// defaultSpecie = 1 - sum(Y_i): pick the abundant species.
+// O2 for lean H2/O2; use H2O (or H2) instead for rich mixtures.
+defaultSpecie   O2;
+
+#include "thermo.compressibleGas"

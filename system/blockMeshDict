@@ -1,0 +1,41 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  H2-O2 spherical flame: 50mm cubic domain, 0.5mm resolution = 100^3 cells
+\*---------------------------------------------------------------------------*/
+FoamFile { version 2.0; format ascii; class dictionary; object blockMeshDict; }
+
+scale 0.001; // mm -> m
+
+vertices
+(
+    (-25 -25 -25)  //0
+    ( 25 -25 -25)  //1
+    ( 25  25 -25)  //2
+    (-25  25 -25)  //3
+    (-25 -25  25)  //4
+    ( 25 -25  25)  //5
+    ( 25  25  25)  //6
+    (-25  25  25)  //7
+);
+
+blocks
+(
+    // 100 cells per direction => 0.5 mm resolution
+    hex (0 1 2 3 4 5 6 7) (100 100 100) simpleGrading (1 1 1)
+);
+
+boundary
+(
+    walls
+    {
+        type wall;
+        faces
+        (
+            (0 3 2 1)  // z-
+            (4 5 6 7)  // z+
+            (0 1 5 4)  // y-
+            (3 7 6 2)  // y+
+            (0 4 7 3)  // x-
+            (1 2 6 5)  // x+
+        );
+    }
+);

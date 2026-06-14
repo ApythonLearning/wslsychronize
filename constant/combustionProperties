@@ -1,0 +1,11 @@
+FoamFile { version 2.0; format ascii; class dictionary; object combustionProperties; }
+
+// "laminar" = resolve chemistry directly (no sub-grid combustion model).
+// Appropriate here because cellular instabilities are laminar-flame phenomena.
+// The LES turbulence model handles large-scale flow; the flame is resolved by the mesh.
+combustionModel  laminar;
+
+laminarCoeffs
+{
+    // No additional coefficients needed for laminar chemistry
+}

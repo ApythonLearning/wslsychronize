@@ -1,0 +1,19 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| OpenFOAM 12: fallback mass-fraction field for the multicomponentFluid solver |
+| (used for any specie in the mechanism without its own 0/ field). All 9       |
+| species here have explicit 0/ files, so this is only a safety default.       |
+\*---------------------------------------------------------------------------*/
+FoamFile { version 2.0; format ascii; class volScalarField; location "0"; object Ydefault; }
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    walls
+    {
+        type            zeroGradient;
+    }
+}
+// ************************************************************************* //

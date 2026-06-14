@@ -1,0 +1,15 @@
+#!/bin/bash
+# Remove previous results so a new run starts from t=0
+# (controlDict uses "startFrom latestTime")
+cd "$(dirname "$0")"
+
+rm -rf processor*
+# delete all time directories (0/ is regenerated from 0.orig by Allrun)
+# NOTE: keep 0.orig — it holds the version-controlled template fields.
+for d in [0-9]*; do
+    [ "$d" = "0.orig" ] && continue
+    [ -d "$d" ] && rm -rf "$d"
+done
+rm -f log.*
+
+echo "Cleaned: time directories (incl. 0/), processor*, logs. (0.orig kept)"

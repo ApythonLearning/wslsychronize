@@ -1,0 +1,27 @@
+FoamFile { version 2.0; format ascii; class dictionary; object controlDict; }
+
+application     foamRun;          // OF12: reactingFoam removed, use foamRun ...
+solver          multicomponentFluid;   // ... with the multicomponentFluid module
+startFrom       latestTime;
+stopAt          endTime;
+endTime         0.002;          // 2 ms
+
+deltaT          1e-7;           // initial dt; adjusted by CFL
+adjustTimeStep  yes;
+maxCo           0.3;            // EulerImplicit not limited by chemistry stiffness
+maxDeltaT       5e-6;
+
+writeControl    adjustableRunTime;
+writeInterval   5e-4;           // write every 0.5 ms (= 30 outputs total)
+purgeWrite      0;
+writeFormat     binary;
+writePrecision  8;
+writeCompression off;
+timeFormat      general;
+timePrecision   8;
+runTimeModifiable yes;
+
+functions
+{
+    // disabled for validation run — OF10 requires quoted lib names
+}

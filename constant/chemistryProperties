@@ -1,0 +1,17 @@
+FoamFile { version 2.0; format ascii; class dictionary; location "constant"; object chemistryProperties; }
+
+chemistryType
+{
+    solver            EulerImplicit;
+}
+
+chemistry       on;
+initialChemicalTimeStep 1e-9;
+
+EulerImplicitCoeffs
+{
+    cTauChem        0.001;
+    equilibriumRateLimiter off;
+}
+
+#include "reactions"

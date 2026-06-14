@@ -1,0 +1,19 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| OpenFOAM 12 — gravitational acceleration                                     |
+| multicomponentFluid (foamRun) requires this field.                           |
+| Spherical flame: g = 0 to preserve spherical symmetry of the kernel.         |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       uniformDimensionedVectorField;
+    location    "constant";
+    object      g;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -2 0 0 0 0];
+value           (0 0 0);
+
+// ************************************************************************* //

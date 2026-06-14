@@ -1,0 +1,69 @@
+FoamFile { version 2.0; format ascii; class dictionary; object postProcessDict; }
+
+// Extract flame front isosurface (c=0.5, T=989K) and OH peak surface
+// Usage: postProcess -func flameIsosurface -latestTime
+//        postProcess -func flameIsosurface -time '0.001:0.002'
+
+flameIsosurface
+{
+    type            surfaces;
+    libs            (sampling);
+    writeControl    none;
+
+    surfaceFormat   vtk;
+    fields          (T OH H2 p U);
+
+    surfaces
+    {
+        // Progress variable c=0.5  =>  T = T_u + 0.5*(T_b-T_u) = 298 + 0.5*1382 = 989 K
+        // T_b(phi=0.60, H2-air) ~ 1680 K
+        flameFront_c05
+        {
+            type        isoSurface;
+            isoField    T;
+            isoValue    989;
+            interpolate true;
+        }
+
+        // Slightly richer cut for reaction-zone center (c~0.7, T~1265K)
+        flameFront_c07
+        {
+            type        isoSurface;
+            isoField    T;
+            isoValue    1265;
+            interpolate true;
+        }
+
+        // OH isosurface at fixed value — adjust after first ParaView inspection
+        // (find peak OH in burned gas and set ~50% of peak)
+        flameOH
+        {
+            type        isoSurface;
+            isoField    OH;
+            isoValue    0.002;
+            interpolate true;
+        }
+    }
+}
+
+// Compute flame radius from isosurface area: r_f = sqrt(A / 4*pi)
+flameRadius
+{
+    type            surfaceFieldValue;
+    libs            (fieldFunctionObjects);
+    writeControl    timeStep;
+    writeInterval   1;
+    log             yes;
+
+    regionType      sampledSurface;
+    name            flameFront_c05;
+    sampledSurfaceDict
+    {
+        type        isoSurface;
+        isoField    T;
+        isoValue    989;
+        interpolate true;
+    }
+    operation       area;
+    fields          ();
+}
