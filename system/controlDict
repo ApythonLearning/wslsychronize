@@ -23,5 +23,16 @@ runTimeModifiable yes;
 
 functions
 {
-    // disabled for validation run — OF10 requires quoted lib names
+    // live ignition/quench monitor: max of T, OH, H2O every 20 steps
+    cellMax
+    {
+        type            volFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    timeStep;
+        writeInterval   20;
+        writeFields     false;
+        select          all;
+        operation       max;
+        fields          (T OH H2O);
+    }
 }
