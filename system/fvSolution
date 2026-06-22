@@ -34,7 +34,9 @@ solvers
 
     "(U|h|k|Yi|B)Final"
     {
-        $U;
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
         relTol          0;
     }
 }
@@ -45,4 +47,15 @@ PIMPLE
     nOuterCorrectors    2;      // for LES, 1-2 is usually enough
     nCorrectors         2;
     nNonOrthogonalCorrectors 0;
+}
+
+relaxationFactors
+{
+    equations
+    {
+        U               0.7;
+        h               0.3;
+        "Yi.*"          0.5;
+        B               0.7;
+    }
 }

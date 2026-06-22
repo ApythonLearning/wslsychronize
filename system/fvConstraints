@@ -1,0 +1,5 @@
+FoamFile { version 2.0; format ascii; class dictionary; location "system"; object fvConstraints; }
+
+// Prevent enthalpy/species overshoots from driving JANAF temperature inversion
+// outside its valid range during the first stiff ignition transients.
+#includeConstraint limitTemperature(min=250, max=5000)

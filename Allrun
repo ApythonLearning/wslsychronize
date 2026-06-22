@@ -22,6 +22,14 @@ set -e
 H2_PERCENT=${1:-10}
 echo "=== H2-O2 Spherical Flame LES: ${H2_PERCENT}% H2 in O2 ==="
 
+# Always run from a clean time history.  A stale latestTime directory can
+# restart from a damaged state after a previous thermo/chemistry abort.
+rm -rf processor*
+for d in [0-9]*; do
+    [ "$d" = "0.orig" ] && continue
+    [ -d "$d" ] && rm -rf "$d"
+done
+
 # Calculate unburned mixture and burned-kernel mass fractions,
 # then write system/setFieldsDict
 python3 - <<PYEOF

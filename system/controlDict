@@ -2,14 +2,15 @@ FoamFile { version 2.0; format ascii; class dictionary; object controlDict; }
 
 application     foamRun;          // OF12: reactingFoam removed, use foamRun ...
 solver          multicomponentFluid;   // ... with the multicomponentFluid module
-startFrom       latestTime;
+startFrom       startTime;
+startTime       0;
 stopAt          endTime;
 endTime         0.002;          // 2 ms
 
-deltaT          1e-7;           // initial dt; adjusted by CFL
+deltaT          2e-8;           // initial dt; adjusted by CFL
 adjustTimeStep  yes;
-maxCo           0.3;            // EulerImplicit not limited by chemistry stiffness
-maxDeltaT       5e-6;
+maxCo           0.15;           // keep reactive-energy updates conservative
+maxDeltaT       1e-7;
 
 writeControl    adjustableRunTime;
 writeInterval   5e-4;           // write every 0.5 ms (= 30 outputs total)
