@@ -2,16 +2,17 @@ FoamFile { version 2.0; format ascii; class dictionary; location "constant"; obj
 
 chemistryType
 {
-    solver            EulerImplicit;
+    solver            ode;
 }
 
 chemistry       on;
 initialChemicalTimeStep 1e-9;
 
-EulerImplicitCoeffs
+odeCoeffs
 {
-    cTauChem        0.001;
-    equilibriumRateLimiter off;
+    solver          seulex;     // robust stiff integrator for H2/O2 chemistry
+    absTol          1e-10;
+    relTol          1e-5;
 }
 
 #include "reactions"

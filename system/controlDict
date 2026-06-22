@@ -7,10 +7,10 @@ startTime       0;
 stopAt          endTime;
 endTime         0.002;          // 2 ms
 
-deltaT          2e-8;           // initial dt; adjusted by CFL
+deltaT          1e-9;           // initial dt; adjusted by CFL
 adjustTimeStep  yes;
-maxCo           0.15;           // keep reactive-energy updates conservative
-maxDeltaT       1e-7;
+maxCo           0.05;           // keep reactive-energy updates conservative
+maxDeltaT       1e-8;
 
 writeControl    adjustableRunTime;
 writeInterval   5e-4;           // write every 0.5 ms (= 30 outputs total)
