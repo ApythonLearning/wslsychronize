@@ -9,7 +9,7 @@ reactions
     // R1: H + O2 = O + OH
     r1
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "H + O2 = O + OH";
         A           3.547e+15;
         beta        -0.406;
@@ -19,7 +19,7 @@ reactions
     // R2: O + H2 = H + OH
     r2
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "O + H2 = H + OH";
         A           5.08e+4;
         beta        2.67;
@@ -29,7 +29,7 @@ reactions
     // R3: H2 + OH = H2O + H
     r3
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "H2 + OH = H2O + H";
         A           2.16e+8;
         beta        1.51;
@@ -39,7 +39,7 @@ reactions
     // R4: O + H2O = OH + OH
     r4
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "O + H2O = OH + OH";
         A           2.97e+6;
         beta        2.02;
@@ -141,7 +141,7 @@ reactions
     // R9: H + O2 + M = HO2 + M  (Troe fall-off, N2 bath)
     r9
     {
-        type        irreversibleArrheniusTroeFallOff;
+        type        reversibleArrheniusTroeFallOff;
         reaction    "H + O2 = HO2";
         k0
         {
@@ -183,7 +183,7 @@ reactions
     // R10: HO2 + H = H2 + O2
     r10
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "HO2 + H = H2 + O2";
         A           1.66e+13;
         beta        0.0;
@@ -193,7 +193,7 @@ reactions
     // R11: HO2 + H = OH + OH
     r11
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "HO2 + H = OH + OH";
         A           7.079e+13;
         beta        0.0;
@@ -203,7 +203,7 @@ reactions
     // R12: HO2 + O = O2 + OH
     r12
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "HO2 + O = O2 + OH";
         A           3.25e+13;
         beta        0.0;
@@ -213,7 +213,7 @@ reactions
     // R13: HO2 + OH = H2O + O2
     r13
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "HO2 + OH = H2O + O2";
         A           2.89e+13;
         beta        0.0;
@@ -223,7 +223,7 @@ reactions
     // R14: HO2 + HO2 = H2O2 + O2
     r14
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "HO2 + HO2 = H2O2 + O2";
         A           4.2e+14;
         beta        0.0;
@@ -233,7 +233,7 @@ reactions
     // R15: H2O2 + M = OH + OH + M  (Troe fall-off)
     r15
     {
-        type        irreversibleArrheniusTroeFallOff;
+        type        reversibleArrheniusTroeFallOff;
         reaction    "H2O2 = OH + OH";
         k0
         {
@@ -275,7 +275,7 @@ reactions
     // R16: H2O2 + H = H2O + OH
     r16
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "H2O2 + H = H2O + OH";
         A           2.41e+13;
         beta        0.0;
@@ -285,7 +285,7 @@ reactions
     // R17: H2O2 + H = HO2 + H2
     r17
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "H2O2 + H = HO2 + H2";
         A           4.82e+13;
         beta        0.0;
@@ -295,7 +295,7 @@ reactions
     // R18: H2O2 + O = OH + HO2
     r18
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "H2O2 + O = OH + HO2";
         A           9.55e+6;
         beta        2.0;
@@ -305,7 +305,7 @@ reactions
     // R19: H2O2 + OH = HO2 + H2O
     r19
     {
-        type        irreversibleArrhenius;
+        type        reversibleArrhenius;
         reaction    "H2O2 + OH = HO2 + H2O";
         A           1.0e+12;
         beta        0.0;
